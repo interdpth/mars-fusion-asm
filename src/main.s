@@ -1,5 +1,6 @@
 .gba
-.open "metroid4.gba", "obj/m4rs.gba", 08000000h
+.open ROMFILENAME,0x8000000
+.include ASMDEFINITIONS
 
 .table "data/text.tbl"
 
@@ -47,13 +48,19 @@ MessageTableLookupAddr equ 0879CDF4h ; This is not the location of the table its
 ; Reserved space addresses/pointers. Used by the patcher to know where it should write
 ; data to. The first address here should be used below when defining the free
 ; space region for the asm to use
-PatcherFreeSpace equ 087D0000h
-CreditsMusicSpace equ 087F0000h ; takes up 0x14E0h
-FutureReservedSpace equ 087F14E0h
+
+.definelabel PatcherFreeSpace,filesize(ROMFILENAME) + 0x8000000
+;PatcherFreeSpace equ 087D0000h
+.definelabel CreditsMusicSpace,PatcherFreeSpace + (087F0000h-087D0000h)
+;CreditsMusicSpace equ 087F0000h ; takes up 0x14E0h
+.definelabel FutureReservedSpace,CreditsMusicSpace + (0x2000)
+;FutureReservedSpace equ 087F14E0h
+
 FutureReservedSpace_Len equ 0DB20h
 
 ; Reserved Pointers
-ReservedPatcherAddrs equ 087FF000h
+.definelabel ReservedPatcherAddrs,FutureReservedSpace + (0x10000)
+;ReservedPatcherAddrs equ 087FF000h
 .org ReservedPatcherAddrs
 reserve_pointer MinorLocationTablePointer
 reserve_pointer MinorLocationsPointer
@@ -74,119 +81,43 @@ reserve_pointer ForceExcessHealthDisplayPointer
 
 
 ; Mark end-of-file padding as free space
-EOF equ 0879ECC8h
-.defineregion EOF, PatcherFreeSpace - EOF, 0FFh
+.definelabel DataFreeSpace,ReservedPatcherAddrs + (0x100)
 ; Free up large unused audio sample
-DataFreeSpace equ 080F9A28h
+;DataFreeSpace equ 080F9A28h
 DataFreeSpaceLen equ 20318h
 DataFreeSpaceEnd equ DataFreeSpace + DataFreeSpaceLen
-.defineregion DataFreeSpace, DataFreeSpaceLen, 0FFh
 
-; Debug mode patch
-.if DEBUG
-.notice "Applying debug patches..."
-.include "src/debug.s"
-.endif
 
-; Optimization patches
-; Patches intended to produce identical behavior to vanilla, but optimized
-.notice "Applying optimization patches..."
-.include "src/optimization/item-check.s"
-.include "src/optimization/power-bomb-explosion.s"
+
+
+
 
 ; Quality of life patches
 ; Patches providing non-essential but convenient features
-.if QOL
+
 .notice "Applying quality of life patches..."
-.include "src/physics/instant-morph.s"
-.include "src/qol/aim-lock.s"
-.include "src/qol/completion-seconds.s"
 .include "src/qol/cross-sector-maps.s"
 .include "src/qol/fast-doors.s"
 .include "src/qol/fast-elevators.s"
 .include "src/qol/ice-beam-volume.s"
-.include "src/qol/increase-red-x-drops.s"
 .include "src/qol/map-info.s"
-.include "src/qol/sax-softlock.s"
-.include "src/qol/screw-unbonk.s"
-.include "src/qol/skip-ending.s"
-.include "src/qol/skip-intro.s"
-.include "src/qol/stereo-default.s"
 .include "src/qol/unhidden-breakable-tiles.s"
 .if UNHIDDEN_MAP
 .include "src/qol/unhidden-map.s"
-.endif
-.if UNHIDDEN_MAP_DOORS
+
+
 .include "src/qol/unhidden-map-doors.s"
-.endif
+
 .include "src/qol/unhidden-pillars.s"
 
-.endif
+
 
 ; Accessibility patches
 ; Patches which make the game more acccessible to people.
-.if ACCESSIBILITY
+
 .include "src/a11y/accessible-enemy-gfx.s"
 .include "src/a11y/accessible-flashing.s"
-.endif
 
-; Non-linearity patches
-; Patches which mitigate or remove linear story restrictions
-; Forced if randomizer flag is on
-.notice "Applying non-linearity patches..."
-.include "src/nonlinear/common.s"
-.include "src/nonlinear/hud-edits.s"
-.include "src/nonlinear/unique_speedbooster_weakness.s"
-.include "src/nonlinear/beam-stacking.s"
-.include "src/nonlinear/bosses.s"
-.include "src/nonlinear/data-rooms.s"
-.include "src/nonlinear/demos.s"
-.include "src/nonlinear/room-edits.s"
-.include "src/nonlinear/room-states.s"
-.include "src/nonlinear/main-missiles.s"
-.include "src/nonlinear/major-completion.s"
-.include "src/nonlinear/minimap-edits.s"
-.include "src/nonlinear/messages.s"
-.include "src/nonlinear/misc-progress.s"
-.include "src/nonlinear/missile-stacking.s"
-.include "src/nonlinear/music.s"
-.include "src/nonlinear/new-game-init.s"
-.include "src/nonlinear/null-event.s"
-.include "src/nonlinear/operations-room.s"
-.include "src/nonlinear/security-unlock.s"
-.include "src/physics/bomb-jump.s"
-.include "src/physics/single-walljump.s"
-.include "src/nonlinear/split-suits.s"
-.include "src/nonlinear/story-flags.s"
-.include "src/nonlinear/bombless-pbs.s"
-; End non-linearity patches
 
-; Consistency patches
-.include "src/consistency/animals.s"
-
-.if !DEBUG
-.include "src/nonlinear/item-select.s"
-.endif
-
-; Randomizer patches
-; Patches making randomization of the game possible
-.notice "Applying randomizer patches..."
-.include "src/randomizer/credits.s"
-.include "src/randomizer/hatch-fixes.s"
-.include "src/randomizer/hints.s"
-.include "src/randomizer/less-map-info.s"
-.include "src/randomizer/menu-edits.s"
-.include "src/randomizer/open-escape.s"
-.include "src/randomizer/start-warp.s"
-.include "src/randomizer/start-location.s"
-.include "src/randomizer/tank-majors.s"
-.include "src/nonlinear/tileset-edits.s"
-.include "src/randomizer/title-screen.s"
-.include "src/randomizer/room-name-display.s"
-; End randomizer patches
-
-.if NERF_GERON_WEAKNESS
-.include "src/nonlinear/nerf-geron-weakness.s"
-.endif
 
 .close

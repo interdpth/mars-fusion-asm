@@ -9,3 +9,4 @@ flipscfg.bin
 # emulator save files and save states
 *.sav
 *.ss[123456789]
+tools/COPYING
