@@ -29,7 +29,7 @@
 .endif
 .sym on
 
-FreeIWRam equ 03005630h
+;FreeIWRam equ 03005630h
 FreeIWRamLen equ 23D0h
 FreeIWRamEnd equ FreeIWRam + FreeIWRamLen ; ends 030079FFh
 
@@ -102,7 +102,7 @@ DataFreeSpaceEnd equ DataFreeSpace + DataFreeSpaceLen
 .include "src/qol/ice-beam-volume.s"
 .include "src/qol/map-info.s"
 .include "src/qol/unhidden-breakable-tiles.s"
-.if UNHIDDEN_MAP
+
 .include "src/qol/unhidden-map.s"
 
 
