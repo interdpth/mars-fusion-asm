@@ -28,9 +28,9 @@ ChangeSuit equ 08063190h
 SetEvent_lazyEffect equ 0806342Ch
 RemoveNeverReformBlocksAndCollectedTanks equ 08064ADCh
 RemoveNeverReformBlocks equ 0806B130h
-;SetBg1Tile equ 0806C614h
+SetBg1Tile_lazy equ 0806C614h
 SetSpecialBg1Tile equ 0806C6E4h
-;SetClipdata equ 0806C82Ch
+SetClipdata_lazy equ 0806C82Ch
 SpawnParticleEffect_lazy equ 080730E4h
 SetEvent_lazy equ 08074890h
 

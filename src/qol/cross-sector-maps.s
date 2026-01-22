@@ -40,13 +40,11 @@
     strb    r0, [r1]
     mov     r0, r4
     ldr     r1, =MinimapData
-    ;bl      08077084h
-    ldr r5,=08077084+1
-    bl jumpr5
-    mov     r0, r4
-   ;bl      0807576Ch
-    ldr r5,=0807576Ch+1
-    bl jumpr5
+    bl      08077084h
+    
+    
+   bl      0807576Ch
+   
     ldr     r1, =DMA3
     ldr     r0, =MinimapData
     str     r0, [r1, DMA_SAD]
@@ -57,8 +55,6 @@
     ldr     r0, [r1, DMA_CNT]
     mov     r0, #1
     bl      08075988h
-    ldr r5, =08075989h
-    bl jumpr5
     add     r1, =@@MapStartCoords
     lsl     r0, r4, #1
     add     r1, r0
@@ -76,12 +72,11 @@
     strh    r0, [r3, BgPositions_Bg3Y]
     pop     { r4, pc }
    
-jumpr5:
- bx r5
+
   .pool
     .align 4
 @@MapStartCoords:
-;.if UNHIDDEN_MAP
+
     .db     13, 8
     .db     9, 6
     .db     8, 8
@@ -89,15 +84,7 @@ jumpr5:
     .db     10, 7
     .db     11, 6
     .db     7, 7
-;.else
- ;   .db     13, 8
- ;   .db     8, 4
-;    .db     5, 2
- ;   .db     10, 6
- ;   .db     10, 7
- ;   .db     6, 5
- ;   .db     7, 6
-;.endif
+
 .endfunc
 .endautoregion
 
