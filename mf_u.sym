@@ -2947,9 +2947,9 @@
 080633FC CheckSetCurrEventBasedEffect
 0806342C SetCurrEventBasedEffect
 08063444 CheckLockHatchesAndProcessEventBasedEffect
-0806368C SetEventBasedEffectBit7
+0806368C SetEvent_lazyBasedEffectBit7
 080636B4 UpdateEventBasedEffect
-080636DC CheckSetEventBasedEffectBit7
+080636DC CheckSetEvent_lazyBasedEffectBit7
 08063820 ProcessEventBasedEffect
 08063C8C CheckUnlockHatches
 08063D40 DetermineHatchesToLock
@@ -3252,7 +3252,7 @@
 08074770 ParticleGettingSuit
 08074810 ParticleGettingSuitBeams
 0807486C UpdateMenuOamDataId
-08074890 SetEvent
+08074890 SetEvent_lazy
 08074BA8 CheckPlayCutsceneDuringTransition
 08074CF4 CheckUpdateEventAfterCutscene
 08074D54 CheckRoomHasEventTrigger
@@ -3279,7 +3279,7 @@
 ;08075988
 08075C64 UpdateMinimapSquareForCollectedTank
 08075CC8 MinimapCheckIsTileExplored
-08075D28 MapScreenCountTanks
+08075D28 MapScreenCountTanks_lazy
 ;08075E64
 080761D8 DownloadingMapSubroutine
 080765F8 PauseScreenSubroutine

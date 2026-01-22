@@ -17,28 +17,28 @@ Samus_SetPose equ 08008FA0h
 
 LoadNewSpriteGfx equ 0800F8ACh
 LoadNewSpritePal equ 0800F8F0h
-SpawnSecondarySprite equ 0800FAE0h
-SpawnPrimarySprite equ 0800FBC8h
+;SpawnSecondarySprite equ 0800FAE0h
+;SpawnPrimarySprite equ 0800FBC8h
 
 Nightmare_MakeMissilesFall equ 0805DD40h
 GeronSetCollision equ 08029cf0h
 
-LockHatches equ 08063070h
+;LockHatches equ 08063070h
 ChangeSuit equ 08063190h
-SetEventEffect equ 0806342Ch
+SetEvent_lazyEffect equ 0806342Ch
 RemoveNeverReformBlocksAndCollectedTanks equ 08064ADCh
 RemoveNeverReformBlocks equ 0806B130h
-SetBg1Tile equ 0806C614h
+;SetBg1Tile equ 0806C614h
 SetSpecialBg1Tile equ 0806C6E4h
-SetClipdata equ 0806C82Ch
-SpawnParticleEffect equ 080730E4h
-SetEvent equ 08074890h
+;SetClipdata equ 0806C82Ch
+SpawnParticleEffect_lazy equ 080730E4h
+SetEvent_lazy equ 08074890h
 
 FinishCollectingTank equ 0806C498h
 SetTankAsCollected equ 0806CCF8h
 RemoveCollectedTanks equ 0806CE40h
 MinimapSetCollectedItems equ 08075884h
-MapScreenCountTanks equ 08075D28h
+MapScreenCountTanks_lazy equ 08075D28h
 InitStartingMap equ 08074FFCh
 NewGameInit equ 080803E4h
 
@@ -77,14 +77,14 @@ Sprite_CreatePlasmaDebris equ 080831C4h
 
 FileSelectDrawAllOam equ 080A1208h
 
-Divide equ 080A3468h
+Divide_lazy equ 080A3468h
 DivideUnsigned equ 080A3614h
 ModuloUnsigned equ 080A368Ch
 memcpy equ 080A4EF0h
-memset equ 080A4F50h
+;memset equ 080A4F50h
 
 TitleScreenLoadDebugText equ 080875B4h
 
 Sram_CheckLoadSaveFileWithBlank equ 08080968h
 Sram_RestoreBackupSaveFileAfterReload equ 0807FB48h ; We completely replace this unused vanilla function
-DmaTransfer equ 08002F1Ch ; r0=channel, r1=src, r2=dst, r3=len, [sp]=bitsize
+;DmaTransfer equ 08002F1Ch ; r0=channel, r1=src, r2=dst, r3=len, [sp]=bitsize

@@ -243,12 +243,16 @@ StartingLocation:
     mov     r0, #10h    ; 10h bits
     str     r0, [sp]
     mov     r0, #3      ; DMA 3
-    bl      DmaTransfer
+    ldr r4,=      DmaTransfer+1
+	bl jump4
 @@return:
     add     sp, #4
     pop     { r0 }
     bx      r0
+jump4:
+	bx r4
     .pool
+	
 .endarea
 
 .autoregion

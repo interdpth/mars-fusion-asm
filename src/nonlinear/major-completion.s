@@ -75,7 +75,7 @@
     mov     r1, #100
     mul     r0, r1
     mov     r1, #MinorLocations_Len + MajorLocations_Len - 1
-    bl      Divide
+    bl      Divide_lazy
     sub     r0, #100        ; \
     asr     r1, r0, #1Fh    ; | maximum of 100
     and     r0, r1          ; |

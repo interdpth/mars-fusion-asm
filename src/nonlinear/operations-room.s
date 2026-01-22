@@ -17,7 +17,7 @@
 
 .org  08039C42h
     ; Set escape sequence event
-    bl      SetEvent
+    bl      SetEvent_lazy
 
 .org 08065282h
     ; Force operations deck event effect

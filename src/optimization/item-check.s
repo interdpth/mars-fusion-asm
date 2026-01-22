@@ -278,7 +278,7 @@
     .pool
 .endarea
 
-.org MapScreenCountTanks
+.org MapScreenCountTanks_lazy
 .area 13Ch
     ; TODO: stop using hardcoded numbers
     push    { r4-r5, lr }
@@ -293,12 +293,12 @@
     ldrh    r0, [r4, SamusUpgrades_MaxEnergy]
     sub     r0, #99
     mov     r1, #100
-    bl      Divide
+    bl      Divide_lazy
     strb    r0, [r5, TankCounter_CurrTotalEnergyTanks]
     ldrh    r0, [r4, SamusUpgrades_MaxMissiles]
     sub     r0, #10
     mov     r1, #5
-    bl      Divide
+    bl      Divide_lazy
     strb    r0, [r5, TankCounter_CurrTotalMissileTanks]
     ldrb    r0, [r4, SamusUpgrades_MaxPowerBombs]
     sub     r0, #10
@@ -440,10 +440,10 @@
 .endfunc
 .endautoregion
 
-.org 0807F1BAh
-    bl  InitializeSavedata
-    bl  SetNewFileHealthInfo
-    b   0807F222h
+;.org 0807F1BAh
+;    bl  InitializeSavedata
+;    bl  SetNewFileHealthInfo
+;    b   0807F222h
 
 .org MinorLocationTablePointer
 .area 04h

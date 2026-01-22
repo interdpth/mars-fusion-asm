@@ -331,7 +331,7 @@ MissileLimit:
     mov     r0, r6  ; ProjectilePosY
     mov     r1, r7  ; ProjectilePosX
     mov     r2, Particle_Tink
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     ; call tink function
     mov     r0, r4  ; r0 = SpriteSlotNum
     mov     r1, r5  ; r1 = ProjectileSlotNum
@@ -366,7 +366,7 @@ MissileLimit:
     mov     r0, r6
     mov     r1, r7
     mov     r2, Particle_ChargedDiffusionMissileExplosion
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     ; set projectile RAM values
     mov     r2, r9  ; r2 = projectile data address
     mov     r0, #3
@@ -411,7 +411,7 @@ MissileLimit:
     mov     r2, r0
     mov     r0, r6
     mov     r1, r7
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     ; set status to 0
     mov     r1, r9
     mov     r0, #0
@@ -510,7 +510,7 @@ CombinedProcessMissile:
     strb    r0, [r4, Projectile_Status]
     ldrh    r0, [r4, Projectile_PosY]
     ldrh    r1, [r4, Projectile_PosX]
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     b       @@return
 @@chargedHit:
     ldrh    r0, [r4, Projectile_PosY]
@@ -518,7 +518,7 @@ CombinedProcessMissile:
     mov     r5, r0
     mov     r6, r1
     mov     r2, Particle_ChargedDiffusionMissileExplosion
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     ; set projectile RAM values
     mov     r0, #3
     strb    r0, [r4, Projectile_Stage]

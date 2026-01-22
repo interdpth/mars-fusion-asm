@@ -27,7 +27,7 @@
     beq     @@retOne
     bl      ObtainMajorLocation
     mov     r0, #2
-    bl      SetEventEffect
+    bl      SetEvent_lazyEffect
 @@retOne:
     mov     r0, #1
     b       @@ret
@@ -45,7 +45,7 @@
 .endfunc
 .endarea
 
-; SetEvent fixes
+; SetEvent_lazy fixes
 .org 08074A72h
     mov     r0, 00000b
 .org 08074A82h

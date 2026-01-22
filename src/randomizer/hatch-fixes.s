@@ -32,7 +32,7 @@
 
 ; Modifying code in CheckUnlockHatches
 .org 08063CA0h
-    bl      @ResetEventHatches
+    bl      @ReSetEvent_lazyHatches
 
 ; Modifying code in LoadDoors
 .org 08065608h
@@ -73,7 +73,7 @@
 
 .autoregion
 .align 4
-.func @ResetEventHatches
+.func @ReSetEvent_lazyHatches
     push    { r0 - r3 }
     ; Some event rooms use #1 in the timer to set events. #2 will only be in the timer during an actual event unlock
     ; This will technically change the hatches one frame early

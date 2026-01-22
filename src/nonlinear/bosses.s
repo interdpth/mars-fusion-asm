@@ -375,9 +375,17 @@
     mov     r0, #0
     bl      Music_FadeOut
     mov     r0, #3Fh
-    bl      LockHatches
+    ;bl      LockHatches
+	ldr r3,=TRAPPARAM+1
+	ldr r0,=NotSupported
+	bl jump
     pop     { pc }
 .endfunc
+jump:
+bx r3
+NotSupported:
+.asciiz "NotSupported"
+
 .endautoregion
 
 .org 0801A8BCh
@@ -438,7 +446,7 @@
 @@doDamage:
     mov     r0, r5
     mov     r1, r6
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     mov     r0, #10
     bl      08084D00h
     b       080454AEh

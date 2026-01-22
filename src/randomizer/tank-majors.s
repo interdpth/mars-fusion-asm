@@ -105,8 +105,11 @@
     add     r0, #53h
     ldrh    r1, [r4, #2]
     ldrh    r2, [r4]
-    bl      SetBg1Tile
+    ldr r3,= SetBg1Tile+1
+	bl jump2
     b       @@set_clipdata
+jump2:
+    bx r3
 @@set_tile:
     ldr     r0, =#801Ch
     add     r0, r5
@@ -118,6 +121,8 @@
     add     r0, r5
     ldrh    r1, [r4, #2]
     ldrh    r2, [r4]
+	    ldr r3,= SetClipdata+1
+	bl jump2
     bl      SetClipdata
     mov     r0, #1
     pop     { r4-r5, pc }

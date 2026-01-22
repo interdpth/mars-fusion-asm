@@ -742,7 +742,7 @@ RedX_OAMData equ 083BE2C0h
 
 SpriteGfxLengths equ 082E4A50h
 PrimarySpriteAiPtrs equ 0879A29Ch
-SpriteGfxPtrs equ 0879A5D8h
+;SpriteGfxPtrs equ 0879A5D8h
 SpritePalettePtrs equ 0879A8D4h
 
 

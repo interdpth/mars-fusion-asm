@@ -463,9 +463,16 @@
     ldrb    r0, [r4, DoorLockEvent_Bitmask]
     lsl     r0, #20h - 6
     lsr     r0, #20h - 6
-    bl      LockHatches
+    ldr r3,=TRAPPARAM+1
+	ldr r0,=@@otupported
+	bx r3
     mov     r0, #1
     b       @@return
+@@otupported:
+.align 4
+	.asciiz "NotSupported"
+	
+.align 4
 @@loop_inc:
     add     r4, #DoorLockEvent_Size
     sub     r5, #1

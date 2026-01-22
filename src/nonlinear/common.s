@@ -115,7 +115,7 @@
     add     r0, r1
     ldrh    r1, [r2, SamusState_PositionX]
     mov     r2, #Particle_IceMissileExplosion
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     mov     r0, #SamusPose_FrozenRequest
     bl      Samus_SetPose
 @@skipFreeze:

@@ -165,7 +165,7 @@
     add     r2, r0, #5
     ldrh    r0, [r4, Projectile_PosY]
     ldrh    r1, [r4, Projectile_PosX]
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     b       @@return
 @@noCollision:
     ldrb    r0, [r4, Projectile_Stage]
@@ -308,7 +308,7 @@
     add     r2, r0, #5
     ldrh    r0, [r4, Projectile_PosY]
     ldrh    r1, [r4, Projectile_PosX]
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     b       @@return
 @@noCollision:
     ldrb    r0, [r4, Projectile_Stage]
@@ -766,7 +766,7 @@
     ldrh    r0, [r4, ArmCannonPos_Y]
     ldrh    r1, [r4, ArmCannonPos_X]
     mov     r2, #2Bh
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
 @@end:
     b       080818E4h
     .pool
@@ -997,13 +997,13 @@
     mov     r0, r9
     mov     r1, r10
     mov     r2, #7
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     b       @@despawnIfNoPlasma
 @@hitInvulnSprite:
     mov     r0, r9
     mov     r1, r10
     mov     r2, #7
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     b       @@despawn
 @@collideWithSolid:
     mov     r0, r7
@@ -1043,7 +1043,7 @@
     ldrb    r2, [r1, r0]
     mov     r0, r9
     mov     r1, r10
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     b       @@despawn
 @@despawnIfNoPlasma:
     lsr     r0, r6, BeamUpgrade_PlasmaBeam + 1
@@ -1217,13 +1217,13 @@
     mov     r0, r9
     mov     r1, r10
     mov     r2, #7
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     b       @@despawnIfNoPlasma
 @@hitInvulnSprite:
     mov     r0, r9
     mov     r1, r10
     mov     r2, #7
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     b       @@despawn
 @@collideWithSolid:
     mov     r0, r7
@@ -1263,7 +1263,7 @@
     ldrb    r2, [r1, r0]
     mov     r0, r9
     mov     r1, r10
-    bl      SpawnParticleEffect
+    bl      SpawnParticleEffect_lazy
     b       @@despawn
 @@despawnIfNoPlasma:
     lsr     r0, r6, BeamUpgrade_PlasmaBeam + 1
