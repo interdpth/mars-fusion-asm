@@ -7,17 +7,19 @@
 ; Assembly-time flags
 
 
-;FreeIWRam equ 03005630h
+FreeIWRam equ 0x3005630 + 1140+2;
 FreeIWRamLen equ 23D0h
 FreeIWRamEnd equ FreeIWRam + FreeIWRamLen ; ends 030079FFh
-
+.headersize 08000000h
+.org 08000000h
 .include "inc/constants.inc"
 .include "inc/enums.inc"
 .include "inc/functions.inc"
 .include "inc/macros.inc"
 .include "inc/sprite-ids.inc"
 .include "inc/structs.inc"
-
+.headersize 08000000h
+.org 08000000h
 StartingItems equ 0828D2ACh
 HintTargets equ 085766ECh
 Credits equ 0874B0B0h
