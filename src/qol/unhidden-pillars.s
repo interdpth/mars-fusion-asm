@@ -495,6 +495,27 @@
 
 .autoregion
     .align 2
+.func CheckCurrentAreaAndRoom
+    ; r0 should contain area id
+    ; r1 should contain room id
+    ; returns r0 as false (0) or true (1)
+    push    { r3, lr }
+    ldr     r3, =CurrArea
+    ldrb    r3, [r3]
+    cmp     r3, r0
+    bne     @@return_false
+    ldr     r3, =CurrRoom
+    ldrb    r3, [r3]
+    cmp     r3, r1
+    bne     @@return_false
+@@return_true:
+    mov     r0, #1
+    pop     { r3, pc }
+@@return_false:
+    mov     r0, #0
+    pop     { r3, pc }
+    .pool
+.endfunc
 @HorizontalExtendedPillarGfx:
     push    { r1, lr }
     mov     r0, #Area_NOC

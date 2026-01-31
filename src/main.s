@@ -67,14 +67,13 @@ DataFreeSpaceEnd equ DataFreeSpace + DataFreeSpaceLen
 ; Patches providing non-essential but convenient features
 
 .notice "Applying quality of life patches..."
-.include "src\optimization\item-check.s "
-.include "src/nonlinear/common.s"
+
 .include "src/nonlinear/room-states.s"
 .include "src/qol/cross-sector-maps.s"
 .include "src/qol/fast-doors.s"
-.include "src/qol/fast-elevators.s"
+;.include "src/qol/fast-elevators.s"
 .include "src/qol/ice-beam-volume.s"
-.include "src\randomizer\tank-majors.s"
+;.include "src\randomizer\tank-majors.s"
 .include "src/qol/map-info.s"
 
 
