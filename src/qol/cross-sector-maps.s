@@ -40,11 +40,11 @@
     strb    r0, [r1]
     mov     r0, r4
     ldr     r1, =MinimapData
-    bl      08077084h
+	ldr r3,=0x08077084+1
+    bl      r3jump
     
-    
-   bl      0807576Ch
-   
+    ldr r3,=0x807576C+1
+    bl      r3jump
     ldr     r1, =DMA3
     ldr     r0, =MinimapData
     str     r0, [r1, DMA_SAD]
@@ -54,7 +54,8 @@
     str     r0, [r1, DMA_CNT]
     ldr     r0, [r1, DMA_CNT]
     mov     r0, #1
-    bl      08075988h
+	 ldr r3,=0x8075988+1
+    bl      r3jump
     add     r1, =@@MapStartCoords
     lsl     r0, r4, #1
     add     r1, r0
@@ -84,7 +85,8 @@
     .db     10, 7
     .db     11, 6
     .db     7, 7
-
+r3jump:
+bx r3
 .endfunc
 .endautoregion
 

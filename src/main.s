@@ -20,8 +20,8 @@ FreeIWRamEnd equ FreeIWRam + FreeIWRamLen ; ends 030079FFh
 .include "inc/structs.inc"
 .headersize 08000000h
 .org 08000000h
-StartingItems equ 0828D2ACh
-HintTargets equ 085766ECh
+;StartingItems equ 0828D2ACh
+;HintTargets equ 085766ECh
 Credits equ 0874B0B0h
 MessageTableLookupAddr equ 0879CDF4h ; This is not the location of the table itself. The pointers, offset by language, at this location will be the table location
 
@@ -58,7 +58,10 @@ reserve_pointer ForceExcessHealthDisplayPointer
 EOF equ 0879ECC8h
 .defineregion EOF, PatcherFreeSpace - EOF, 0FFh
 ; Free up large unused audio sample
-DataFreeSpace equ 080F9A28h
+
+
+//DataFreeSpace equ 080F9A28h
+.definelabel DataFreeSpace,filesize(ROMFILENAME) + 0x8000000
 DataFreeSpaceLen equ 20318h
 DataFreeSpaceEnd equ DataFreeSpace + DataFreeSpaceLen
 .defineregion DataFreeSpace, DataFreeSpaceLen, 0FFh
